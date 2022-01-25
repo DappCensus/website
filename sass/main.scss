@@ -18,12 +18,136 @@ body {
   font-family: "Verdana", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 section,
 footer {
   padding: 7rem 0;
 
   @media screen and (max-width: 768px) {
     padding: 4rem 0;
+  }
+}
+
+nav {
+  padding: 1rem 0;
+  background-color: $mainThemeColor;
+  height: 10vh;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  // overflow: hidden;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    position: relative;
+
+    .logo {
+      z-index: 21;
+    }
+
+    .bars {
+      display: none;
+      width: 44px;
+      height: 44px;
+      position: relative;
+      z-index: 30;
+      cursor: pointer;
+      transition: 0.3s linear;
+
+      &.active {
+        span {
+          &:nth-child(odd) {
+            transform-origin: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            width: 65%;
+            position: absolute;
+          }
+
+          &:nth-child(even) {
+            transform-origin: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            width: 65%;
+            position: absolute;
+          }
+        }
+      }
+
+      span {
+        position: absolute;
+        background-color: $lightColor;
+        height: 3px;
+        transition: 0.3s linear;
+
+        &:nth-child(odd) {
+          width: 20px;
+          left: 12px;
+          top: 17px;
+        }
+
+        &:nth-child(even) {
+          width: 24px;
+          left: 10px;
+          bottom: 17px;
+        }
+      }
+      @media screen and (max-width: 768px) {
+        display: flex;
+      }
+    }
+
+    .navContainer {
+      height: 100%;
+      background-color: $mainThemeColor;
+
+      @media screen and (max-width: 768px) {
+        height: 100vh;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        right: 100%;
+        bottom: 0;
+        z-index: 20;
+      }
+      .navList {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        list-style: none;
+        padding-left: 0;
+
+        @media screen and (max-width: 768px) {
+          flex-direction: column;
+          align-items: start;
+          justify-content: flex-start;
+          margin-top: 6rem;
+          padding-left: 1.4rem;
+        }
+
+        .nav-item {
+          .nav-link {
+            color: $lightColor;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 15px;
+
+            @media screen and (max-width: 768px) {
+              font-size: 24px;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -34,22 +158,41 @@ footer {
 .customBtn {
   background: $secondaryThemeColor;
   color: $lightColor;
-  padding: 18px 30px;
+  padding: 18px 20px;
   margin: 10px 0;
+  border: 1px solid $secondaryThemeColor;
+  transition: 0.3s linear;
 
   @media screen and (max-width: 768px) {
-    padding: 22px 20px;
+    padding: 22px 15px;
+  }
+
+  &:hover {
+    color: $mainThemeColor;
+    background-color: $lightColor;
+    border: 1px solid $mainThemeColor;
   }
 }
 
+.subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: capitalize;
+  color: $mainThemeColor;
+}
+
 .title {
-  font-size: 48px;
+  font-size: 44px;
   line-height: 68px;
   font-weight: bold;
 
   @media screen and (max-width: 768px) {
-    font-size: 32px;
-    line-height: 50px;
+    font-size: 28px;
+    line-height: 1.4;
+  }
+  @media screen and (max-width: 1400px) {
+    font-size: 34px;
+    line-height: 1.4;
   }
 }
 
@@ -60,8 +203,12 @@ footer {
   color: #5b5b5b;
 }
 
-#hero .row {
-  min-height: 100vh;
+#home {
+  .row {
+    &:nth-child(1) {
+      min-height: 70vh;
+    }
+  }
 }
 
 .lottie {
@@ -77,10 +224,54 @@ footer {
     width: 100%;
     height: auto;
   }
+
+  @media screen and (max-width: 1400px) {
+    width: 100%;
+    height: auto;
+  }
 }
 
-#benefits {
-  background: $mainThemeColor;
+#products {
+  background: $secondaryThemeColor;
+  // padding: 0;
+
+  .row {
+    min-height: 70vh;
+
+    .margin {
+      margin: 1.8rem 0;
+    }
+  }
+
+  .title,
+  .bodyCopy {
+    color: $lightColor;
+  }
+
+  .card {
+    position: relative;
+
+    img {
+      position: absolute;
+      width: 60px;
+      height: auto;
+      top: 0%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .card-title {
+      font-size: 42px;
+      font-weight: bold;
+
+      sub {
+        font-size: 24px;
+      }
+    }
+
+    .card-text {
+      font-size: 14px;
+    }
+  }
 }
 
 #listing .row,
@@ -91,19 +282,19 @@ footer {
 .tag {
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 12.5px 40px;
   border-radius: 50px;
   background-color: rgba(207, 207, 207, 0.3);
-  margin: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 
-  .text {
-    margin-left: 10px;
-  }
+  //   .text {
+  //     margin-left: 5px;
+  //   }
 
   @media screen and (max-width: 768px) {
-    padding: 12.5px 20px;
-    margin: 8px;
+    padding: 12.5px 10px;
   }
 }
 
@@ -193,38 +384,38 @@ footer {
 
     .bodyCopy {
       color: $lightColor;
+      font-size: 14px;
     }
   }
 
   .timeline {
-    width: 80%;
+    width: 100%;
     height: 100%;
     max-width: 100%;
     margin: 0 auto;
     position: relative;
-    &::before {
-      content: "";
-      position: absolute;
-      height: 100%;
-      width: 2px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: $lightColor;
+
+    @media screen and (min-width: 768px) {
+      &::before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 2px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: $lightColor;
+      }
     }
 
     ul {
       list-style: none;
 
       li {
-        margin-bottom: 20px;
+        margin-bottom: 30px;
 
         .timelineContent {
           display: flex;
           align-items: center;
-
-          @media screen and (max-width: 768px) {
-            justify-content: space-around;
-          }
 
           .text {
             margin-left: 20px;
@@ -279,11 +470,18 @@ footer {
     font-size: 32px;
     margin-bottom: 30px;
     color: $lightColor;
+
+    @media screen and (max-width: 768px) {
+      font-size: 22px;
+      color: $mainThemeColor;
+      margin-bottom: 20px;
+    }
   }
 
   .footerList {
     list-style: none;
-    text-indent: -18%;
+    // text-indent: -18%;
+    padding-left: 0;
 
     li {
       margin-bottom: 20px;
@@ -298,6 +496,11 @@ footer {
   .social-container {
     display: flex;
     align-items: center;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      align-items: initial;
+    }
   }
   .social {
     list-style: none;
@@ -305,5 +508,31 @@ footer {
     align-items: center;
     width: 60%;
     justify-content: space-around;
+    padding-left: 0;
+  }
+}
+
+#comingSoon {
+  + .row {
+    &:nth-child(1) {
+      min-height: 100vh;
+    }
+  }
+  .title {
+    font-size: 64px;
+    text-transform: capitalize;
+    line-height: 1.4;
+
+    @media screen and (max-width: 768px) {
+      font-size: 32px;
+    }
+  }
+  #goBack {
+    font-size: 14px;
+    color: $mainThemeColor;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: bold;
+    text-decoration: none;
   }
 }

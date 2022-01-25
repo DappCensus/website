@@ -13,6 +13,10 @@ body {
   font-family: "Verdana", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 section,
 footer {
   padding: 7rem 0;
@@ -25,6 +29,157 @@ footer {
   }
 }
 
+nav {
+  padding: 1rem 0;
+  background-color: #5e36b5;
+  height: 10vh;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+nav .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 100%;
+  position: relative;
+}
+
+nav .container .logo {
+  z-index: 21;
+}
+
+nav .container .bars {
+  display: none;
+  width: 44px;
+  height: 44px;
+  position: relative;
+  z-index: 30;
+  cursor: pointer;
+  -webkit-transition: 0.3s linear;
+  transition: 0.3s linear;
+}
+
+nav .container .bars.active span:nth-child(odd) {
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+          transform: translate(-50%, -50%) rotate(45deg);
+  width: 65%;
+  position: absolute;
+}
+
+nav .container .bars.active span:nth-child(even) {
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+          transform: translate(-50%, -50%) rotate(-45deg);
+  width: 65%;
+  position: absolute;
+}
+
+nav .container .bars span {
+  position: absolute;
+  background-color: #fff;
+  height: 3px;
+  -webkit-transition: 0.3s linear;
+  transition: 0.3s linear;
+}
+
+nav .container .bars span:nth-child(odd) {
+  width: 20px;
+  left: 12px;
+  top: 17px;
+}
+
+nav .container .bars span:nth-child(even) {
+  width: 24px;
+  left: 10px;
+  bottom: 17px;
+}
+
+@media screen and (max-width: 768px) {
+  nav .container .bars {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+nav .container .navContainer {
+  height: 100%;
+  background-color: #5e36b5;
+}
+
+@media screen and (max-width: 768px) {
+  nav .container .navContainer {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 100%;
+    bottom: 0;
+    z-index: 20;
+  }
+}
+
+nav .container .navContainer .navList {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  list-style: none;
+  padding-left: 0;
+}
+
+@media screen and (max-width: 768px) {
+  nav .container .navContainer .navList {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: start;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    margin-top: 6rem;
+    padding-left: 1.4rem;
+  }
+}
+
+nav .container .navContainer .navList .nav-item .nav-link {
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  nav .container .navContainer .navList .nav-item .nav-link {
+    font-size: 24px;
+  }
+}
+
 .container {
   padding: 0 30px;
 }
@@ -32,26 +187,49 @@ footer {
 .customBtn {
   background: #180443;
   color: #fff;
-  padding: 18px 30px;
+  padding: 18px 20px;
   margin: 10px 0;
+  border: 1px solid #180443;
+  -webkit-transition: 0.3s linear;
+  transition: 0.3s linear;
 }
 
 @media screen and (max-width: 768px) {
   .customBtn {
-    padding: 22px 20px;
+    padding: 22px 15px;
   }
 }
 
+.customBtn:hover {
+  color: #5e36b5;
+  background-color: #fff;
+  border: 1px solid #5e36b5;
+}
+
+.subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: capitalize;
+  color: #5e36b5;
+}
+
 .title {
-  font-size: 48px;
+  font-size: 44px;
   line-height: 68px;
   font-weight: bold;
 }
 
 @media screen and (max-width: 768px) {
   .title {
-    font-size: 32px;
-    line-height: 50px;
+    font-size: 28px;
+    line-height: 1.4;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .title {
+    font-size: 34px;
+    line-height: 1.4;
   }
 }
 
@@ -62,8 +240,8 @@ footer {
   color: #5b5b5b;
 }
 
-#hero .row {
-  min-height: 100vh;
+#home .row:nth-child(1) {
+  min-height: 70vh;
 }
 
 .lottie {
@@ -85,8 +263,55 @@ footer {
   }
 }
 
-#benefits {
-  background: #5e36b5;
+@media screen and (max-width: 1400px) {
+  .lottie {
+    width: 100%;
+    height: auto;
+  }
+}
+
+#products {
+  background: #180443;
+}
+
+#products .row {
+  min-height: 70vh;
+}
+
+#products .row .margin {
+  margin: 1.8rem 0;
+}
+
+#products .title,
+#products .bodyCopy {
+  color: #fff;
+}
+
+#products .card {
+  position: relative;
+}
+
+#products .card img {
+  position: absolute;
+  width: 60px;
+  height: auto;
+  top: 0%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+#products .card .card-title {
+  font-size: 42px;
+  font-weight: bold;
+}
+
+#products .card .card-title sub {
+  font-size: 24px;
+}
+
+#products .card .card-text {
+  font-size: 14px;
 }
 
 #listing .row,
@@ -101,23 +326,18 @@ footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   padding: 12.5px 40px;
   border-radius: 50px;
   background-color: rgba(207, 207, 207, 0.3);
-  margin: 20px;
-}
-
-.tag .text {
-  margin-left: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 @media screen and (max-width: 768px) {
   .tag {
-    padding: 12.5px 20px;
-    margin: 8px;
+    padding: 12.5px 10px;
   }
 }
 
@@ -211,25 +431,28 @@ footer {
 
 #roadmap .row .bodyCopy {
   color: #fff;
+  font-size: 14px;
 }
 
 #roadmap .timeline {
-  width: 80%;
+  width: 100%;
   height: 100%;
   max-width: 100%;
   margin: 0 auto;
   position: relative;
 }
 
-#roadmap .timeline::before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 2px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  background-color: #fff;
+@media screen and (min-width: 768px) {
+  #roadmap .timeline::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    background-color: #fff;
+  }
 }
 
 #roadmap .timeline ul {
@@ -237,7 +460,7 @@ footer {
 }
 
 #roadmap .timeline ul li {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 #roadmap .timeline ul li .timelineContent {
@@ -247,13 +470,6 @@ footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-@media screen and (max-width: 768px) {
-  #roadmap .timeline ul li .timelineContent {
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-  }
 }
 
 #roadmap .timeline ul li .timelineContent .text {
@@ -310,9 +526,17 @@ footer .footerTitle {
   color: #fff;
 }
 
+@media screen and (max-width: 768px) {
+  footer .footerTitle {
+    font-size: 22px;
+    color: #5e36b5;
+    margin-bottom: 20px;
+  }
+}
+
 footer .footerList {
   list-style: none;
-  text-indent: -18%;
+  padding-left: 0;
 }
 
 footer .footerList li {
@@ -334,6 +558,18 @@ footer .social-container {
           align-items: center;
 }
 
+@media screen and (max-width: 768px) {
+  footer .social-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: initial;
+        -ms-flex-align: initial;
+            align-items: initial;
+  }
+}
+
 footer .social {
   list-style: none;
   display: -webkit-box;
@@ -345,5 +581,31 @@ footer .social {
   width: 60%;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  padding-left: 0;
+}
+
+#comingSoon + .row:nth-child(1) {
+  min-height: 100vh;
+}
+
+#comingSoon .title {
+  font-size: 64px;
+  text-transform: capitalize;
+  line-height: 1.4;
+}
+
+@media screen and (max-width: 768px) {
+  #comingSoon .title {
+    font-size: 32px;
+  }
+}
+
+#comingSoon #goBack {
+  font-size: 14px;
+  color: #5e36b5;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-weight: bold;
+  text-decoration: none;
 }
 /*# sourceMappingURL=main.css.map */
